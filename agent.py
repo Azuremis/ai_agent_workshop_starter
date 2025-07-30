@@ -16,16 +16,12 @@ load_dotenv()
 def create_agent():
     llm = ChatOpenAI(model_name="qwen/qwen3-coder:free", temperature=0, base_url="https://openrouter.ai/api/v1")
     
-    
     checkpointer = MemorySaver()
 
     tools = [add_function, exa_search]  # You'll register a search tool in Lab 2
     
     # Create ReAct agent with LangGraph
     agent = create_react_agent(llm, tools, checkpointer=checkpointer, verbose=True)
-    
-
-    #print(agent.get_graph().draw_mermaid_png())
     
     return agent
 
