@@ -40,7 +40,6 @@ if __name__ == "__main__":
         try:
             config = {"configurable": {"thread_id": "first_thread"}}
 
-
             # LangGraph uses invoke with messages format
             stream_mode = input("Enable streaming? (y/n): ").strip().lower() == "y"
             if stream_mode:
