@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import json
 import uuid
+import os
 from datetime import datetime
 import time
 
@@ -13,8 +14,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# API Configuration
-API_BASE_URL = "http://127.0.0.1:8000"
+# API Configuration - Environment-aware
+API_BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000")
 
 def call_agent_api(message: str, session_id: str = None):
     """Call the FastAPI agent endpoint"""
