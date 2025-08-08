@@ -43,7 +43,10 @@ def exa_search(query: str) -> str:
                 snippet = " ".join(item["highlights"])
             elif item.get("text"):
                 snippet = item["text"]
-            formatted.append(f"{url}: {snippet}".strip())
+            if url:
+                formatted.append(f"{url}: {snippet}".strip())
+            else:
+                formatted.append(snippet.strip())
         return "\n".join(formatted)
 
     return str(search_results)
