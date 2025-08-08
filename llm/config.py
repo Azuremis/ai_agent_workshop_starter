@@ -13,7 +13,7 @@ OPENROUTER_URL = "https://openrouter.ai/api/v1"
 
 def _detect_openrouter_from_key(key: str) -> bool:
     """Return True if the key appears to be an OpenRouter key."""
-    return key.startswith("sk-or-") or key.startswith("org-")
+    return key.startswith("sk-or-v1-")
 
 
 def _select_provider() -> str:
