@@ -28,7 +28,7 @@ def exa_search(query: str) -> str:
             text_contents_options=True,
             highlights=True,
         )
-    except Exception as exc:  # pragma: no cover - network errors
+    except requests.exceptions.RequestException as exc:  # pragma: no cover - network errors
         return f"Exa search failed: {exc}"
 
     if not search_results:
