@@ -7,9 +7,19 @@ This repository is the hands-on starting point for the **AI Agents for Fun & Pro
 ```bash
 # Clone or download the starter kit, then:
 make bootstrap        # create virtual-env and install dependencies
-cp .env.example .env  # add your OpenRouter API key
+cp .env.example .env  # choose provider and add API key
 python agent.py       # run the console agent
 ```
+
+### LLM configuration
+
+Set `LLM_PROVIDER` to `openrouter`, `openai`, or `anthropic` and supply the matching API key:
+
+- `OPENROUTER_API_KEY` for OpenRouter (auto-detected if the key starts with `sk-or-` or `org-`)
+- `OPENAI_API_KEY` for OpenAI
+- `ANTHROPIC_API_KEY` for Anthropic
+
+If `LLM_PROVIDER` is not set, the application tries to detect OpenRouter keys and otherwise defaults to OpenAI. You can also override the model with `LLM_MODEL`.
 
 ## 🎉 New: Streamlit Frontend
 
@@ -54,7 +64,7 @@ make docker-run       # available at http://localhost:8000
 
 ## Architecture
 
-- **Backend**: FastAPI + LangGraph + OpenRouter
+- **Backend**: FastAPI + LangGraph + pluggable LLM provider
 - **Frontend**: Streamlit with real-time chat
 - **Agent**: ReAct pattern with tool calling
 - **Memory**: Persistent conversation history
