@@ -16,13 +16,37 @@ def duckduckgo_search(query: str) -> str:
 
 def exa_search(query: str) -> str:
     """Search the web using Exa search API"""
-    search_tool = ExaSearchResults(exa_api_key=os.environ["EXA_API_KEY"])
+    api_key = os.getenv("EXA_API_KEY")
+    if not api_key:
+        return "EXA API key not found. Set EXA_API_KEY environment variable."
 
-    search_results = search_tool._run(
-    query=query,
-    num_results=5,
-    text_contents_options=True,
-    highlights=True,
-    )
+    try:
+        search_tool = ExaSearchResults(exa_api_key=api_key)
+        search_results = search_tool._run(
+            query=query,
+            num_results=5,
+            text_contents_options=True,
+            highlights=True,
+        )
+    except requests.exceptions.RequestException as exc:  # pragma: no cover - network errors
+        return f"Exa search failed: {exc}"
 
-    return search_results
+    if not search_results:
+        return "No search results found."
+
+    if isinstance(search_results, list):
+        formatted = []
+        for item in search_results:
+            url = item.get("url", "")
+            snippet = ""
+            if item.get("highlights"):
+                snippet = " ".join(item["highlights"])
+            elif item.get("text"):
+                snippet = item["text"]
+            if url:
+                formatted.append(f"{url}: {snippet}".strip())
+            else:
+                formatted.append(snippet.strip())
+        return "\n".join(formatted)
+
+    return str(search_results)
