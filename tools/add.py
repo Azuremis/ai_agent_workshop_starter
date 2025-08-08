@@ -1,5 +1,10 @@
-"""Placeholder for a web search tool.
-In Lab 2 you'll implement actual search functionality here.
+"""Simple math addition utility.
+
+This module provides :func:`add_function`, which adds nine to a given
+integer input and returns the result. Example::
+
+    >>> add_function(1)
+    10
 """
 
 def add_function(input: int) -> int:
