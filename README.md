@@ -52,7 +52,13 @@ make frontend         # Start Streamlit frontend only
 
 ```bash
 make docker-build
-make docker-run       # available at http://localhost:8000
+make docker-run       # FastAPI server at http://localhost:8000
+```
+
+To run both the API and Streamlit frontend, use Docker Compose:
+
+```bash
+docker compose up --build  # http://localhost:8000 (API) and http://localhost:8501 (UI)
 ```
 
 ## Workshop Labs
