@@ -10,8 +10,9 @@ load_dotenv()
 
 
 def duckduckgo_search(query: str) -> str:
-    """Search the web using DuckDuckGo search API"""
-    return  DuckDuckGoSearchRun(name="search-web")
+    """Search the web using DuckDuckGo search API."""
+    search_tool = DuckDuckGoSearchRun(name="search-web")
+    return search_tool.run(query)
 
 def exa_search(query: str) -> str:
     """Search the web using Exa search API"""
