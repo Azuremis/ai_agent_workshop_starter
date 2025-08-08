@@ -44,7 +44,9 @@ def get_llm():
     model_name = os.getenv("LLM_MODEL", default_models.get(provider))
 
     if provider == "openrouter":
-        api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
+        api_key = os.getenv("OPENROUTER_API_KEY")
+        if not api_key:
+            raise ValueError("OPENROUTER_API_KEY must be set when provider is 'openrouter'")
         return ChatOpenAI(model_name=model_name, temperature=0, base_url=OPENROUTER_URL, api_key=api_key)
     if provider == "openai":
         api_key = os.getenv("OPENAI_API_KEY")
