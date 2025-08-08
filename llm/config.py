@@ -34,7 +34,16 @@ def _select_provider() -> str:
 
 
 def get_llm():
-    """Instantiate an LLM client based on configuration."""
+    """
+    Instantiate an LLM client based on configuration.
+
+    Returns:
+        An instance of ChatOpenAI or ChatAnthropic, depending on the selected provider.
+
+    Raises:
+        ImportError: If the provider is 'anthropic' and langchain-anthropic is not installed.
+        ValueError: If the provider is unsupported.
+    """
     provider = _select_provider()
     default_models = {
         "openrouter": "qwen/qwen3-coder:free",
