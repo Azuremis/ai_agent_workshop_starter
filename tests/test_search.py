@@ -17,7 +17,7 @@ def test_duckduckgo_search_executes_tool(monkeypatch):
             calls['query'] = query
             return f"result for {query}"
 
-    monkeypatch.setattr(search, 'DuckDuckGoSearchRun', lambda name="search-web": DummySearch())
+    monkeypatch.setattr(search, 'DuckDuckGoSearchRun', lambda name="search-web": DummySearch(name))
 
     result = search.duckduckgo_search("python")
     assert result == "result for python"
