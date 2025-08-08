@@ -1,6 +1,6 @@
 """Simple math addition utility.
 
-This module provides :func:`add_function`, which adds nine to a given
+This module provides :func:`add_function`, which adds 9 to a given
 integer input and returns the result. Example::
 
     >>> add_function(1)
